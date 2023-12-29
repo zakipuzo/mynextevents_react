@@ -1,0 +1,1 @@
+export { default as MyNextEvents } from './components/MyNextEvents';

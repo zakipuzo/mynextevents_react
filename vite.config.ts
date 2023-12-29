@@ -1,7 +1,25 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path';
 import react from '@vitejs/plugin-react'
-
-// https://vitejs.dev/config/
+import dts from 'vite-plugin-dts'
 export default defineConfig({
-  plugins: [react()],
+  
+  build: {
+    
+    lib: {
+      entry:  resolve("src", 'index.ts'),
+      name: 'mynextevents',
+      fileName: (format) => `mynextevents.${format}.js`,
+      
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React'
+        }
+      }
+    }
+  },
+  plugins: [react(), dts()]
 })
